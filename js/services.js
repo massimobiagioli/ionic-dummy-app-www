@@ -4,16 +4,13 @@ angular.module('starter.services', [])
     var data = {};
     
     var loadSettings = function() {
-        this.data = {
-            serverAddress: 'xxx.xxx.xxx.xxx',
-            serverPort: 1234            
-        };
-              
+        this.data = (window.localStorage.getItem('settingsData') ? JSON.parse(window.localStorage.getItem('settingsData')) : {});              
         return this.data;  
     };      
     
     var saveSettings = function(newData) {
         this.data = newData;
+        window.localStorage.setItem('settingsData', JSON.stringify(this.data));
     }
     
     var getSettings = function() {
